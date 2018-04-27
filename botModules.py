@@ -142,9 +142,10 @@ class botModules:
     def remindMe(self, x):
         # if '!remindMe' in x:
         delayer = x[x.find('!remindMe') + 9:].split()
-        if 'min' in delayer[1]:
+        timer = delayer[1].lower()
+        if 'min' in timer:
             delay = int(delayer[0]) * 60
-        elif 'hr' in delayer[1] or 'hour' in delayer[1]:
+        elif 'hr' in timer or 'hour' in timer:
             delay = int(delayer[0]) * 3600
         else:
             delay = int(delayer[0])
