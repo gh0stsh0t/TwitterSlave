@@ -3,7 +3,7 @@ import os
 
 from twython import Twython
 from twython import TwythonStreamer
-
+import sys
 import botModules
 
 APP_KEY = os.environ['aKey']
@@ -38,7 +38,7 @@ class MyStreamer(TwythonStreamer):
                                    "!quit": bot.quit}
                     moduleCalls[command](x)
             except Exception as ex:
-                print(ex)
+                sys.exc_clear()
 
     def on_error(self, status_code, data):
         print(status_code)
