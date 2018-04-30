@@ -38,7 +38,7 @@ class MyStreamer(TwythonStreamer):
                                    "!quit": bot.quit}
                     moduleCalls[command](x)
             except Exception as ex:
-                sys.exc_clear()
+                pass #
 
     def on_error(self, status_code, data):
         print(status_code)
