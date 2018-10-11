@@ -13,8 +13,6 @@ OAUTH_TOKEN_SECRET = os.environ['oauthSecret']
 file = open('trigger.txt', "r+")
 trigger = file.read()
 twitter = Twython(APP_KEY, APP_SECRET, OAUTH_TOKEN, OAUTH_TOKEN_SECRET)
-stream = MyStreamer(APP_KEY, APP_SECRET, OAUTH_TOKEN, OAUTH_TOKEN_SECRET)
-stream.user(track=trigger)
 since = 0
 while True:
     while True:
