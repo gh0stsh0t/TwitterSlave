@@ -22,13 +22,13 @@ while True:
         if int(howmany) <= 0:
             break
         timewhen = limits["resources"]["statuses"]["/statuses/home_timeline"]["reset"]
-        wait = (int(timewhen) - int(datetime.datetime.now().strftime('%s'))) / howmany
+        wait = (int(timewhen) - int(datetime.now().strftime('%s'))) / howmany
         timeline = twitter.get_home_timeline(since_id=since)
         for tweet in timeline:
             since = tweet['id']
             check(tweet)
         time.sleep(wait)
-    timeleft = int(timewhen) - int(datetime.datetime.now().strftime('%s'))
+    timeleft = int(timewhen) - int(datetime.now().strftime('%s'))
     time.sleep(timeleft)
 
 def check(data):
