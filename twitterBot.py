@@ -16,10 +16,11 @@ twitter = Twython(APP_KEY, APP_SECRET, OAUTH_TOKEN, OAUTH_TOKEN_SECRET)
 since = 0
 while True:
     while True:
-        howmany = twitter.get_lastfunction_header('x-rate-limit-remaining')
+        limits = twitter.get_application_rate_limit_status()
+        howmany = limits["resources"]["statuses"]["/statuses/home_timeline"]["remaining"]
         if int(howmany) <= 0:
             break
-        timewhen = twitter.get_lastfunction_header('x-rate-limit-rest')
+        timewhen = limits["resources"]["statuses"]["/statuses/home_timeline"]["reset"]
         wait = (int(timewhen) - int(datetime.datetime.now().strftime('%s'))) / howmany
         timeline = twitter.get_home_timeline(since_id=since)
         for tweet in timeline:
