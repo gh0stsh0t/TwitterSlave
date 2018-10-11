@@ -179,7 +179,7 @@ class botModules:
             result = int(x[x.find('!deleteAll') + 10:].split()[0])
         except (ValueError, IndexError):
             result = 200
-        timeline = self.twitter.get_user_timeline(count=result, since_id='103807114965187789', 8max_id=self.data['id'])
+        timeline = self.twitter.get_user_timeline(count=result, since_id='103807114965187789', max_id=self.data['id'])
         for tweet in timeline:
             status = int(tweet['id_str'])
             self.twitter.destroy_status(id=status)
