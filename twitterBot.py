@@ -48,7 +48,8 @@ while True:
         timewhen = limits["resources"]["statuses"]["/statuses/home_timeline"]["reset"]
         wait = (int(timewhen) - int(datetime.now().strftime('%s'))) / howmany
         timeline = twitter.get_home_timeline(since_id=since)
-        for tweet in timeline:
+        print("get_home_timeline calls remaining {}".format(howmany))
+        for tweet in reversed(timeline):
             since = tweet['id']
             check(tweet)
         time.sleep(wait)
