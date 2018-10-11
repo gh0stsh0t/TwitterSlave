@@ -12,25 +12,6 @@ APP_SECRET = os.environ['aSecret']
 OAUTH_TOKEN = os.environ['oauth']
 OAUTH_TOKEN_SECRET = os.environ['oauthSecret']
 file = open('trigger.txt', "r+")
-trigger = file.read()
-twitter = Twython(APP_KEY, APP_SECRET, OAUTH_TOKEN, OAUTH_TOKEN_SECRET)
-since = "1050347525364830208"
-while True:
-    while True:
-        limits = twitter.get_application_rate_limit_status()
-        howmany = limits["resources"]["statuses"]["/statuses/home_timeline"]["remaining"]
-        if int(howmany) <= 0:
-            break
-        timewhen = limits["resources"]["statuses"]["/statuses/home_timeline"]["reset"]
-        wait = (int(timewhen) - int(datetime.now().strftime('%s'))) / howmany
-        timeline = twitter.get_home_timeline(since_id=since)
-        for tweet in timeline:
-            since = tweet['id']
-            check(tweet)
-        time.sleep(wait)
-    timeleft = int(timewhen) - int(datetime.now().strftime('%s'))
-    time.sleep(timeleft)
-
 def check(data):
     bot = botModules.botModules(twitter, data)
     if 'text' in data:
@@ -55,3 +36,22 @@ def check(data):
                 moduleCalls[command](x)
         except Exception as ex:
             pass #
+trigger = file.read()
+twitter = Twython(APP_KEY, APP_SECRET, OAUTH_TOKEN, OAUTH_TOKEN_SECRET)
+since = "1050347525364830208"
+while True:
+    while True:
+        limits = twitter.get_application_rate_limit_status()
+        howmany = limits["resources"]["statuses"]["/statuses/home_timeline"]["remaining"]
+        if int(howmany) <= 0:
+            break
+        timewhen = limits["resources"]["statuses"]["/statuses/home_timeline"]["reset"]
+        wait = (int(timewhen) - int(datetime.now().strftime('%s'))) / howmany
+        timeline = twitter.get_home_timeline(since_id=since)
+        for tweet in timeline:
+            since = tweet['id']
+            check(tweet)
+        time.sleep(wait)
+    timeleft = int(timewhen) - int(datetime.now().strftime('%s'))
+    time.sleep(timeleft)
+
