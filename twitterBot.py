@@ -14,7 +14,7 @@ OAUTH_TOKEN_SECRET = os.environ['oauthSecret']
 file = open('trigger.txt', "r+")
 trigger = file.read()
 twitter = Twython(APP_KEY, APP_SECRET, OAUTH_TOKEN, OAUTH_TOKEN_SECRET)
-since = "0"
+since = "1050347525364830208"
 while True:
     while True:
         limits = twitter.get_application_rate_limit_status()
