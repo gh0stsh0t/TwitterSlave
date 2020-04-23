@@ -20,9 +20,6 @@ def check(data):
         try:
             if not(x[:2] == 'RT'):
                 command = x[x.find("!"):].split()[0]
-                if 'fuk you' in x:
-                    twitter.update_status(status="@" + data['user']['screen_name']
-                                                 + " ye fuk u too -bot", in_reply_to_status_id=data['id'])
                 moduleCalls = {"!remindMe": bot.remindMe,
                                "!deleteAll": bot.deleteAllT,
                                "!noteThis": bot.noteThis,
