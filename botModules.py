@@ -9,7 +9,7 @@ import urllib.parse
 import urllib.request
 
 import requests
-from fuzzywuzzy import process
+from rapidfuzz import process
 
 
 class botModules:
